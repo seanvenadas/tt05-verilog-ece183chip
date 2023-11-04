@@ -27,8 +27,8 @@ reg [1:0] sum_y;
 reg [1:0] sum_t;
 reg [3:0] count;
 
-always @(posedge clk or posedge ~rst_n) begin
-    if (~rst_n) begin
+always @(posedge clk or posedge rst_n) begin
+    if (rst_n) begin
         for (int i = 0; i < WINDOW_SIZE; i = i + 1) begin
             x_reg[i] <= 2'b00;
             y_reg[i] <= 2'b00;

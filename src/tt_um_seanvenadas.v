@@ -5,14 +5,14 @@ module tt_um_seanvenadas (
     //input wire [7:0] uio_in,  // Merge outputs into uio_in
     //output wire [7:0] uio_out,  // Merge outputs into uio_out
     //output wire [7:0] uio_oe,  // Merge outputs into uio_oe
-    //input  wire       ena,      // will go high when the design is enabled
+    input  wire       ena,      // will go high when the design is enabled
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
 
 //assign uio_out = 8'b00000000; // Didn't use
 //assign uio_oe = 8'b00000000; //
-//assign ena = 1'b1; //
+assign ena = 1'b1; //
 //assign uio_in = 8'b00000000; //
 
 parameter WINDOW_SIZE = 4;  // Choose the size of the moving average window

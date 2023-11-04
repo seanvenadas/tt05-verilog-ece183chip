@@ -1,4 +1,4 @@
-// NOTE: In this 2nd version, 
+// NOTE: In this 2nd version, the inputs/outputs were changed to match that one file in Step 7. 
 module EventBasedFilterWithDenoising (
     input wire [7:0] ui_in,  // Merge inputs into ui_in
     output wire [7:0] uo_out,  // Merge outputs into uo_out

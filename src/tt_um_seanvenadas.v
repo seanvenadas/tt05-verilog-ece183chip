@@ -13,8 +13,8 @@ module tt_um_seanvenadas (
 assign uio_out = 8'b00000000; // Didn't use
 assign uio_oe = 8'b00000000; //
 initial begin
-    ena = 1'b1; //
-    uio_in = 8'b00000000; //
+    assign ena = 1'b1; //
+    assign uio_in = 8'b00000000; //
 end
 
 parameter WINDOW_SIZE = 4;  // Choose the size of the moving average window

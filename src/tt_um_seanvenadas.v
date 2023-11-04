@@ -13,6 +13,9 @@ module tt_um_seanvenadas (
 assign uio_out = 8'b00000000; // Didn't use
 assign uio_oe = 8'b00000000; //
 
+wire [7:0] unused;
+assign unused = {7'b0000000, ena} & uio_in;
+
 parameter WINDOW_SIZE = 4;  // Choose the size of the moving average window
 
 reg [1:0] x_reg [0:WINDOW_SIZE-1];
@@ -65,7 +68,7 @@ always @* begin
         uo_out[7:6] = 2'b00;  // Set the unused bits to '00'
     end else begin
         // 'p' is not high, so output zeros
-        uo_out = 8'b00000000 & {7'b0000000, ena} & uio_in; //added ena and uio_in; nowhere else to put them
+        uo_out = 8'b00000000;
     end
 end
 

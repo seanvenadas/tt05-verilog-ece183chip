@@ -1,4 +1,4 @@
-// NOTE: In this 2nd version, inputs/outputs match the ones from Step 7 in the chip submission manual.  
+// NOTE: In this 2nd version, inputs/outputs match the ones from Step 7 in the chip submission manual.
 module tt_um_seanvenadas (
     input wire [7:0] ui_in,  // Merge inputs into ui_in
     output wire [7:0] uo_out,  // Merge outputs into uo_out

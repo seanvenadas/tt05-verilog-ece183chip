@@ -27,17 +27,17 @@ reg [1:0] sum_y;
 reg [1:0] sum_t;
 reg [3:0] count;
 
-// Initialize registers outside the always block
+// Initialize registers outside the always block using blocking assignments
 initial begin
     for (int i = 0; i < WINDOW_SIZE; i = i + 1) begin
-        x_reg[i] <= 2'b00;
-        y_reg[i] <= 2'b00;
-        t_reg[i] <= 2'b00;
+        x_reg[i] = 2'b00;
+        y_reg[i] = 2'b00;
+        t_reg[i] = 2'b00;
     end
-    sum_x <= 2'b00;
-    sum_y <= 2'b00;
-    sum_t <= 2'b00;
-    count <= 4'b0000;
+    sum_x = 2'b00;
+    sum_y = 2'b00;
+    sum_t = 2'b00;
+    count = 4'b0000;
 end
 
 always @(posedge clk or posedge rst_n) begin
@@ -46,22 +46,22 @@ always @(posedge clk or posedge rst_n) begin
     end else begin
         // Shift input data into the shift registers
         for (int i = 0; i < WINDOW_SIZE - 1; i = i + 1) begin
-            x_reg[i] <= x_reg[i + 1];
-            y_reg[i] <= y_reg[i + 1];
-            t_reg[i] <= t_reg[i + 1];
+            x_reg[i] = x_reg[i + 1];
+            y_reg[i] = y_reg[i + 1];
+            t_reg[i] = t_reg[i + 1];
         end
-        x_reg[WINDOW_SIZE - 1] <= ui_in[1:0];  // Extract x from ui_in
-        y_reg[WINDOW_SIZE - 1] <= ui_in[3:2];  // Extract y from ui_in
-        t_reg[WINDOW_SIZE - 1] <= ui_in[5:4];  // Extract t from ui_in
+        x_reg[WINDOW_SIZE - 1] = ui_in[1:0];  // Extract x from ui_in
+        y_reg[WINDOW_SIZE - 1] = ui_in[3:2];  // Extract y from ui_in
+        t_reg[WINDOW_SIZE - 1] = ui_in[5:4];  // Extract t from ui_in
 
         // Calculate the sum of the window for each signal
-        sum_x <= sum_x + ui_in[1:0] - x_reg[0];  // Extract x from ui_in
-        sum_y <= sum_y + ui_in[3:2] - y_reg[0];  // Extract y from ui_in
-        sum_t <= sum_t + ui_in[5:4] - t_reg[0];  // Extract t from ui_in
+        sum_x = sum_x + ui_in[1:0] - x_reg[0];  // Extract x from ui_in
+        sum_y = sum_y + ui_in[3:2] - y_reg[0];  // Extract y from ui_in
+        sum_t = sum_t + ui_in[5:4] - t_reg[0];  // Extract t from ui_in
 
         // Increment the count, making sure it doesn't exceed the window size
         if (count < WINDOW_SIZE)
-            count <= count + 1;
+            count = count + 1;
     end
 end
 

@@ -17,7 +17,7 @@ reg [7:0] uo_out_temp;
 wire [7:0] unused;
     assign unused = {7'b0000000, ena} & uio_in;
 
-parameter WINDOW_SIZE = 4;  // Choose the size of the moving average window
+parameter WINDOW_SIZE = 2;  // Choose the size of the moving average window
 
 reg [1:0] x_reg [0:WINDOW_SIZE-1];
 reg [1:0] y_reg [0:WINDOW_SIZE-1];

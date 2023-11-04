@@ -13,7 +13,7 @@ module tt_um_seanvenadas (
 assign uio_out = 8'b00000000; // Didn't use
 assign uio_oe = 8'b00000000; //
 
-wire [7:0] uo_out_temp;
+reg [7:0] uo_out_temp;
 wire [7:0] unused;
     assign unused = {7'b0000000, ena} & uio_in;
 

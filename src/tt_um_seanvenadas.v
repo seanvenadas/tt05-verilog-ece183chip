@@ -1,4 +1,4 @@
-// NOTE: In this 2nd version, inputs/outputs match the ones from Step 7 in the chip submission manual.  
+// NOTE: In this 2nd version, inputs/outputs match the ones from Step 7 in the chip submission manual.
 module tt_um_seanvenadas (
     input wire [7:0] ui_in,  // Merge inputs into ui_in
     output wire [7:0] uo_out,  // Merge outputs into uo_out
@@ -10,14 +10,12 @@ module tt_um_seanvenadas (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-wire reset = ! rst_n;
-    
 assign uio_out = 8'b00000000; // Didn't use
 assign uio_oe = 8'b00000000; //
 
 reg [7:0] uo_out_temp;
 wire [7:0] unused;
-    assign unused = {7'b0000000, ena} & uio_in;
+assign unused = {7'b0000000, ena} & uio_in;
 
 parameter WINDOW_SIZE = 4;  // Choose the size of the moving average window
 
@@ -29,17 +27,22 @@ reg [1:0] sum_y;
 reg [1:0] sum_t;
 reg [3:0] count;
 
-    always @(posedge clk) begin
-    if (reset) begin
-        for (int i = 0; i < WINDOW_SIZE; i = i + 1) begin
-            x_reg[i] <= 2'b00;
-            y_reg[i] <= 2'b00;
-            t_reg[i] <= 2'b00;
-        end
-        sum_x <= 2'b00;
-        sum_y <= 2'b00;
-        sum_t <= 2'b00;
-        count <= 4'b0000;
+// Initialize registers outside the always block
+initial begin
+    for (int i = 0; i < WINDOW_SIZE; i = i + 1) begin
+        x_reg[i] <= 2'b00;
+        y_reg[i] <= 2'b00;
+        t_reg[i] <= 2'b00;
+    end
+    sum_x <= 2'b00;
+    sum_y <= 2'b00;
+    sum_t <= 2'b00;
+    count <= 4'b0000;
+end
+
+always @(posedge clk or posedge rst_n) begin
+    if (rst_n) begin
+        // No need to initialize registers here
     end else begin
         // Shift input data into the shift registers
         for (int i = 0; i < WINDOW_SIZE - 1; i = i + 1) begin

@@ -1,4 +1,4 @@
-// NOTE: In this 2nd version, 
+// NOTE: In this 2nd version,  
 module EventBasedFilterWithDenoising (
     input wire [7:0] ui_in,  // Merge inputs into ui_in
     output wire [7:0] uo_out,  // Merge outputs into uo_out

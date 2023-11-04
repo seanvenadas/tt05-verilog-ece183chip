@@ -13,6 +13,7 @@ module tt_um_seanvenadas (
 assign uio_out = 8'b00000000; // Didn't use
 assign uio_oe = 8'b00000000; //
 
+wire [7:0] uo_out_temp;
 wire [7:0] unused;
     assign unused = {7'b0000000, ena} & uio_in;
 
@@ -62,14 +63,16 @@ end
 always @* begin
     // Only output non-zero values if 'p' is high
     if (ui_in[7:6] == 2'b11) begin  // Extract p from ui_in
-        uo_out[1:0] = (count == 4'b0000) ? 2'b00 : sum_x;
-        uo_out[3:2] = (count == 4'b0000) ? 2'b00 : sum_y;
-        uo_out[5:4] = (count == 4'b0000) ? 2'b00 : sum_t;
-        uo_out[7:6] = 2'b00;  // Set the unused bits to '00'
+        uo_out_temp[1:0] = (count == 4'b0000) ? 2'b00 : sum_x;
+        uo_out_temp[3:2] = (count == 4'b0000) ? 2'b00 : sum_y;
+        uo_out_temp[5:4] = (count == 4'b0000) ? 2'b00 : sum_t;
+        uo_out_temp[7:6] = 2'b00;  // Set the unused bits to '00'
     end else begin
         // 'p' is not high, so output zeros
-        uo_out[7:0] = 8'b00000000 & unused;
+        uo_out_temp[7:0] = 8'b00000000 & unused;
     end
 end
+
+assign uo_out = uo_out_temp;
 
 endmodule

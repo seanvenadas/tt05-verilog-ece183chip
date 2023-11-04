@@ -19,16 +19,16 @@ wire [7:0] unused;
 
 parameter WINDOW_SIZE = 4;  // Choose the size of the moving average window
 
-reg [1:0] x_reg[0:WINDOW_SIZE-1];
-reg [1:0] y_reg[0:WINDOW_SIZE-1];
-reg [1:0] t_reg[0:WINDOW_SIZE-1];
+reg [1:0] x_reg [0:WINDOW_SIZE-1];
+reg [1:0] y_reg [0:WINDOW_SIZE-1];
+reg [1:0] t_reg [0:WINDOW_SIZE-1];
 reg [1:0] sum_x;
 reg [1:0] sum_y;
 reg [1:0] sum_t;
 reg [3:0] count;
 
-always @(posedge clk or posedge rst_n) begin
-    if (rst_n) begin
+always @(posedge clk or posedge ~rst_n) begin
+    if (~rst_n) begin
         for (int i = 0; i < WINDOW_SIZE; i = i + 1) begin
             x_reg[i] <= 2'b00;
             y_reg[i] <= 2'b00;

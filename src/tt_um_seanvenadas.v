@@ -19,9 +19,9 @@ wire [7:0] unused;
 
 parameter WINDOW_SIZE = 4;  // Choose the size of the moving average window
 
-reg [1:0] x_reg [0:WINDOW_SIZE-1];
-reg [1:0] y_reg [0:WINDOW_SIZE-1];
-reg [1:0] t_reg [0:WINDOW_SIZE-1];
+reg [1:0] x_reg[0:WINDOW_SIZE-1];
+reg [1:0] y_reg[0:WINDOW_SIZE-1];
+reg [1:0] t_reg[0:WINDOW_SIZE-1];
 reg [1:0] sum_x;
 reg [1:0] sum_y;
 reg [1:0] sum_t;

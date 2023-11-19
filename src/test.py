@@ -11,7 +11,7 @@ def initialize_clock(dut):
 def tt_um_seanvenadas_tb(dut):
     yield initialize_clock(dut)
 
-    dut.ui_in <= 8'b00000000
+    dut.ui_in <= 8'b00000000;
     dut.ena <= 0
     dut.rst_n <= 1
 
@@ -21,13 +21,13 @@ def tt_um_seanvenadas_tb(dut):
     dut.rst_n <= 1
 
     # Test when p is not 2'b11
-    dut.ui_in <= 8'b00000000
+    dut.ui_in <= 8'b00000000;
     yield RisingEdge(dut.clk)
     assert dut.uo_out == 8'b00000000, "Output signals should be zero when p is not 2'b11"
     yield RisingEdge(dut.clk)
 
     # Test when p is 2'b11
-    dut.ui_in <= 8'b11000000  # Set p to 2'b11
+    dut.ui_in <= 8'b11000000;
     yield RisingEdge(dut.clk)
     assert dut.uo_out != 8'b00000000, "Output signals should not be zero when p is 2'b11"
     yield RisingEdge(dut.clk)
